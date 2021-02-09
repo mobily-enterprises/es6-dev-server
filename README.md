@@ -4,6 +4,9 @@ This module serves ES6 modules ensuring node resolution via the node algorithm. 
 
 Resolution is done via the node algorithm, but letting "module" or "jsnext" fields in package.json take precedence over "main".
 
+_NOTE: this module draws strong inspiration (and large chunks of repurposed code) from
+Marijn Haverbeke's awesome [esmoduleserve](https://github.com/marijnh/esmoduleserve)._
+
 ## Usage as a stand alone server
 
 You can use es6-dev-server as a server:
