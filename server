@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const app = require('./app')
+const debug = require('debug')('es6-dev-server:server')
+const http = require('http')
+const { program } = require('commander')
+const packageJson = require('./package.json')
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app)
+
+
+main()
+async function main () {
+
+  // Set the version depending on package.json
+  program
+    .version(packageJson.version)
+    .option('-p, --port <port>', 'Set the port', 3000)
+    .option('-e, --entry <entry>', 'Default file for SPAs (never returning "not found").', '')
+
+  await program.parse(process.argv)
+
+  server.listen(program.opts().port)
+  server.on('error', onError)
+  server.on('listening', onListening)
+}
+
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError (error) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
+
+  const bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges')
+      process.exit(1)
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use')
+      process.exit(1)
+    default:
+      throw error
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening () {
+  const addr = server.address()
+  console.log(addr)
+  const bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port
+  console.log('Listening on ' + bind)
+}

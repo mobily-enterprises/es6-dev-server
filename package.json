@@ -1,0 +1,28 @@
+{
+  "name": "es6-dev-server",
+  "version": "0.0.1",
+  "bin": {
+    "es6-dev-server": "./serveer"
+  },
+  "dependencies": {
+    "acorn": "^8.0.4",
+    "acorn-walk": "^8.0.0",
+    "commander": "^7.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "resolve": "^1.15.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-lit": "^1.2.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "standard": "^14.3.4"
+  }
+}
