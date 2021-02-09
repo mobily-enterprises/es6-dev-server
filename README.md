@@ -2,6 +2,8 @@
 
 This module serves ES6 modules ensuring node resolution via the node algorithm. Express middleware included.
 
+Resolution is done via the node algorithm, but letting "module" or "jsnext" fields in package.json take precedence over "main".
+
 ## Usage as a stand alone server
 
 You can use es6-dev-server as a server:
@@ -30,7 +32,7 @@ const moduleMiddleware = require('es6-dev-server').moduleMiddleware
 (...)
 
 app.use(moduleMiddleware('.'))
-...
+````
 
 The parameter is the directory that will be served.
 
@@ -40,4 +42,16 @@ The parameter is the directory that will be served.
 You can call the internal middleware function of es6-dev-server, and have full control over
 the way the middleware is called:
 
+````
+const ModuleMiddleware = require('es6-dev-server').ModuleMiddleware
+
+const mm = new ModuleMiddleware({ root })
+app.use((req, res, next) => {
+  if (mm.handleRequest(req, res)) {
+    // The request WAS handled by the middleware's handleRequest() function
+  } else {
+    // The request was NOT handled by the middleware's handleRequest() function
+    next()
+  }
+})
 ````

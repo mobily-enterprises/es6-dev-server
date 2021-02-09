@@ -1,8 +1,8 @@
 {
   "name": "es6-dev-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
-    "es6-dev-server": "./serveer"
+    "es6-dev-server": "./server"
   },
   "dependencies": {
     "acorn": "^8.0.4",
