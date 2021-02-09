@@ -45,7 +45,7 @@ the way the middleware is called:
 ````
 const ModuleMiddleware = require('es6-dev-server').ModuleMiddleware
 
-const mm = new ModuleMiddleware({ root })
+const mm = new ModuleMiddleware({ root: '.' })
 app.use((req, res, next) => {
   if (mm.handleRequest(req, res)) {
     // The request WAS handled by the middleware's handleRequest() function

@@ -65,16 +65,13 @@ class ModuleMiddleware {
       } catch {
         return false
       }
-      // if (/\.map$/.test(moduleFilePath)) {
-      //   cached = this.cache[path] = new Cached(code, "application/json")
-      // } else {
       const { resolvedCode, error } = this.resolveImports(moduleFilePath, code)
       if (error) {
         this.send(req, res, 500, error)
         return true
       }
       cached = this.cache[pathname] = new Cached(resolvedCode, 'application/javascript')
-      // }
+
       // Drop cache entry when the file changes.
       const watching = fs.watch(moduleFilePath, () => {
         watching.close()
