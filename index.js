@@ -239,7 +239,6 @@ class ModuleMiddleware {
       ImportDeclaration: patchSrc,
       ImportExpression: node => {
         if (node.source.type === 'Literal') {
-          debugger
           const { error, path } = this.resolveModuleLikeNode(moduleFilePath, node.source.value)
           if (!error) {
             patches.push({
