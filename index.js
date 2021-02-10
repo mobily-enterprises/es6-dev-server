@@ -14,6 +14,7 @@
 // without having to build it every time.
 //
 // TODO:
+// * Add https://www.npmjs.com/package/reload so that it does client reload
 // * Check whether we need/want `unwin()``
 // * Get rid of that `require('url')` which is now obsolete
 //
