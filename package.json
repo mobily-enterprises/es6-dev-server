@@ -1,5 +1,6 @@
 {
   "name": "es6-dev-server",
+  "description": "Serve ES6 modules ensuring node resolution via the node algorithm. Express middleware and full server",
   "version": "0.0.4",
   "bin": {
     "es6-dev-server": "./server"
@@ -24,5 +25,14 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "standard": "^14.3.4"
+  },
+  "author": "Tony Mobily",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mobily-enterprises/es6-dev-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobily-enterprises/es6-dev-server.git"
   }
 }

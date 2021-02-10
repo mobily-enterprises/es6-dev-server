@@ -34,7 +34,7 @@ const moduleMiddleware = require('es6-dev-server').moduleMiddleware
 
 (...)
 
-app.use(moduleMiddleware('.'))
+app.use(moduleMiddleware({ root: '.') })
 ````
 
 The parameter is the directory that will be served.

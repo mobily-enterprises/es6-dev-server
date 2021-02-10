@@ -5,7 +5,7 @@
  */
 
 const app = require('./app')
-const debug = require('debug')('es6-dev-server:server')
+// const debug = require('debug')('es6-dev-server:server')
 const http = require('http')
 const { program } = require('commander')
 const packageJson = require('./package.json')
@@ -16,10 +16,9 @@ const packageJson = require('./package.json')
 
 const server = http.createServer(app)
 
-
 main()
-async function main () {
 
+async function main () {
   // Set the version depending on package.json
   program
     .version(packageJson.version)
@@ -33,7 +32,6 @@ async function main () {
   server.on('listening', onListening)
 }
 
-
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -43,17 +41,13 @@ function onError (error) {
     throw error
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port
-
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges')
+      console.error(program.opts().port + ' requires elevated privileges')
       process.exit(1)
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use')
+      console.error(program.opts().port + ' is already in use')
       process.exit(1)
     default:
       throw error

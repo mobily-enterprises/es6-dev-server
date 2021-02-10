@@ -28,7 +28,7 @@ if (entry) {
       res.sendFile(entry, { root }, err => err && next())
     } else next()
   })
-  }
+}
 
 // Default "not found"
 app.use(function (req, res, next) {
@@ -36,6 +36,5 @@ app.use(function (req, res, next) {
     .status(404)
     .send("Sorry can't find that!")
 })
-
 
 module.exports = app
