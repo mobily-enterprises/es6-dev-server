@@ -213,6 +213,14 @@ class ModuleMiddleware {
   // The resolution is not done using regular expressions etc. It's done by
   // actually parsing the Javascript code, and then patching the relevant
   // part so that the path is rewritten.
+  //
+  // Note that `walk.simple` is used to walk through the list of nodes
+  // of the parsed program; a list of `patches` is created, with the
+  // exact positions of the portion to change, and the new text.
+  // The new text wwill be longer than the original one; so, changing `code`
+  // would have the side effect of messing up the stores ranges; so, the patches
+  // are applied in inverted order to the source file, so that making changes
+  // doesn't mess up the offset of the other patches.
   resolveImports (moduleFilePath, code) {
     const patches = []
     let ast
@@ -234,7 +242,6 @@ class ModuleMiddleware {
       })
     }
     walk.simple(ast, {
-
       ExportNamedDeclaration: patchSrc,
       ImportDeclaration: patchSrc,
       ImportExpression: node => {
