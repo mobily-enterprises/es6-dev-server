@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 // Middleware to map imports in JS files so that node module resolution is used
-app.use(moduleMiddleware(root))
+app.use(moduleMiddleware({ root }))
 
 // Serve static files
 app.use(express.static(path.join(root)))
