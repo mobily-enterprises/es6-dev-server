@@ -287,7 +287,8 @@ class ModuleMiddleware {
     const moduleDirPath = path.dirname(moduleFilePath)
     let resolved
     try {
-      resolved = fs.realpathSync(resolve.sync(importPath, { basedir: moduleDirPath, packageFilter }))
+      // resolved = fs.realpathSync(resolve.sync(importPath, { basedir: moduleDirPath, packageFilter }))
+      resolved = resolve.sync(importPath, { basedir: moduleDirPath, packageFilter })
     } catch (e) {
       return { error: e.toString() }
     }
