@@ -1,7 +1,7 @@
 {
   "name": "es6-dev-server",
   "description": "Serve ES6 modules ensuring node resolution via the node algorithm. Express middleware and full server",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "bin": {
     "es6-dev-server": "./server"
   },

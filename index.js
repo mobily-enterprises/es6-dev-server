@@ -178,10 +178,11 @@ class ModuleMiddleware {
         return false
       }
       /* Note: if resolveImports() fails, the server will return error 500. */
-      const { resolvedCode, error } = this.resolveImports(moduleFilePath, code)
+      let { resolvedCode, error } = this.resolveImports(moduleFilePath, code)
       if (error) {
-        this.send(req, res, 500, error)
-        return true
+        // this.send(req, res, 500, error)
+        // return true
+        resolvedCode = code
       }
 
       /* The `cached` varialbe is finally assigned now that the resolution is done */
@@ -235,6 +236,7 @@ class ModuleMiddleware {
       /* The next line will run eval as an indirect function */
       const orig = (0, eval)(code.slice(node.source.start, node.source.end))
       const { error, path } = this.resolveModuleLikeNode(moduleFilePath, orig)
+
       if (error) return { error }
       patches.push({
         from: node.source.start,
@@ -245,6 +247,9 @@ class ModuleMiddleware {
     walk.simple(ast, {
       ExportNamedDeclaration: patchSrc,
       ImportDeclaration: patchSrc,
+      ExportAllDeclaration: patchSrc,
+      ExportDefaultDeclaration: patchSrc,
+      ExportNamedDeclaration: patchSrc,    
       ImportExpression: node => {
         if (node.source.type === 'Literal') {
           const { error, path } = this.resolveModuleLikeNode(moduleFilePath, node.source.value)
